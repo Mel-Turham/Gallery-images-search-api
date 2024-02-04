@@ -69,7 +69,7 @@ body {
 .container .text {
 	font-weight: 500;
 	text-align: center;
-	font-size: clamp(1.5rem, 2vw, 3rem);
+	font-size: clamp(1.5rem, 2vw, 2rem);
 	text-wrap: pretty;
 }
 
@@ -111,17 +111,76 @@ form button svg {
 
 #container-images {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 1rem;
 	padding: 1rem;
 	position: relative;
 }
 
+.container-image {
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	border-radius: 10px;
+	height: 300px;
+}
+
+.container-image::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 1;
+	z-index: 0;
+	transition: 0.4s ease-in-out;
+}
+
+.container-image .desc {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	transform: translateY(100%);
+	z-index: 1;
+	padding: 10px 20px;
+	line-height: 1.5;
+	transition: 0.3s ease-in-out;
+}
+
+.container-image:hover .desc {
+	transform: translateY(0);
+}
+
+.container-image:hover::after {
+	opacity: 0;
+}
+
+.desc .title-img {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+.desc .author {
+	font-style: italic;
+}
+
+.desc .likes {
+	margin-right: auto;
+	width: fit-content;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
+
 #container-images img {
 	width: 100%;
-	height: 350px;
+	height: 100%;
 	object-fit: cover;
-	border-radius: 10px;
 }
 
 #container-images .error-message {
@@ -130,7 +189,7 @@ form button svg {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	margin-top: 4rem;
-	font-size: clamp(1.5rem, 2vw, 2rem);
+	font-size: clamp(1.5rem, 2vw, 1.8rem);
 	color: #fff;
 	text-wrap: nowrap;
 	padding: 0 1rem;

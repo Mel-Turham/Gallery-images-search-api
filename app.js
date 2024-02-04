@@ -9,6 +9,7 @@ const searchPhotos = async (query) => {
 	const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${API_KEY}`;
 	const response = await fetch(url);
 	const data = await response.json();
+	console.log(data.results);
 	return data.results;
 };
 
@@ -21,23 +22,57 @@ const displayPhotos = (photos) => {
 		// Afficher un message d'erreur
 		const errorMessage = document.createElement('p');
 		errorMessage.classList.add('error-message');
-		errorMessage.textContent = 'Aucune image trouvée. 😭';
+		errorMessage.textContent = 'Aucune image trouvée... 😞 ';
 		photosContainer.appendChild(errorMessage);
 		return;
 	}
 
 	photos.forEach((photo) => {
 		const img = document.createElement('img');
+		const containerImage = document.createElement('div');
+		const containerDescription = document.createElement('div');
+
+		containerDescription.classList.add('desc');
+
+		// Ajouter le titre de l'image
+		const title = document.createElement('h3');
+
+		title.classList.add('title-img');
+
+		title.textContent = photo.alt_description;
+		containerDescription.appendChild(title);
+
+		// Ajouter l'auteur de l'image
+		const author = document.createElement('p');
+		author.classList.add('author');
+		author.textContent = `Photo by ${photo.user.name}`;
+
+		containerDescription.appendChild(author);
+
+		// Ajouter le nombre de likes
+		const likes = document.createElement('p');
+		likes.classList.add('likes');
+		likes.textContent = `👍 ${photo.likes} likes`;
+
+		containerDescription.appendChild(likes);
+
+		containerImage.classList.add('container-image');
+		img.setAttribute('loading', 'lazy');
 		img.src = photo.urls.regular;
 		img.alt = photo.description;
-		photosContainer.appendChild(img);
+
+		containerImage.appendChild(img);
+
+		containerImage.appendChild(containerDescription);
+
+		photosContainer.appendChild(containerImage);
 	});
 };
 
 // Fonction pour gérer la recherche
 
 const handleSearch = async () => {
-	const query = (searchInput.value).toLowerCase();
+	const query = searchInput.value.toLowerCase();
 	if (!query) return;
 
 	// Afficher un indicateur de chargement
