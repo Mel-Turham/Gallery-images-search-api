@@ -81,15 +81,17 @@ const handleSearch = async () => {
 	photosContainer.appendChild(loadingIndicator);
 	const photos = await searchPhotos(query);
 
-	loadingIndicator.remove;
+	loadingIndicator.remove();
 	displayPhotos(photos);
+
+	searchInput.value = '';
 };
 
 // Ecouteur d'événement sur le bouton de recherche
 
 searchButton.addEventListener('click', handleSearch);
 
-// Ecouteur d'événement sur le bouton de recherche
+// Ecouteur d'événement sur le  form de recherche
 
 const formSearch = document.querySelector('form');
 if (formSearch) {

@@ -75,7 +75,7 @@ body {
 
 .container form {
 	background-color: #fdfdfd;
-	width: max(350px, 30%);
+	width: max(280px, 30%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -85,7 +85,7 @@ body {
 	margin-bottom: 20px;
 }
 form input {
-	flex: 2;
+	width: 100%;
 	border: none;
 	background: none;
 	padding: 5px 0;
@@ -95,7 +95,7 @@ form input {
 }
 
 form button {
-	height: 30px;
+	height: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -107,11 +107,13 @@ form button {
 form button svg {
 	height: 1.5rem;
 	width: 1.5rem;
+	color: #000000;
 }
 
 #container-images {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	place-content: center;
+	grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
 	gap: 1rem;
 	padding: 1rem;
 	position: relative;
